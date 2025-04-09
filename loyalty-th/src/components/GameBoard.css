@@ -1,0 +1,162 @@
+.game-container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.game-header {
+  margin-bottom: 20px;
+}
+
+.game-header h1 {
+  color: #ff4444;
+  margin-bottom: 10px;
+}
+
+.game-stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.game-stats p {
+  color: #FFFFFF;
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.game-stats button {
+  background-color: #ff4444;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.game-stats button:hover {
+  background-color: #cc0000;
+}
+
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  justify-content: center;
+}
+
+.win-message, .game-over-message {
+  background-color: #4CAF50;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  animation: fadeIn 0.5s;
+}
+
+.game-over-message {
+  background-color: #f44336;
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s;
+}
+
+.popup-content {
+  background-color: white;
+  padding: 30px;
+  border-radius: 15px;
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  animation: popIn 0.3s;
+}
+
+.popup-content h2 {
+  color: #4CAF50;
+  margin-bottom: 20px;
+  font-size: 28px;
+}
+
+.popup-content p {
+  margin: 10px 0;
+  font-size: 18px;
+  color: #333;
+}
+
+.gift-won {
+  margin: 20px 0;
+  padding: 15px;
+  background-color: #f8f8f8;
+  border-radius: 10px;
+  border: 2px dashed #4CAF50;
+}
+
+.gift-won h3 {
+  color: #4CAF50;
+  margin-bottom: 10px;
+  font-size: 22px;
+}
+
+.gift-image {
+  max-width: 200px;
+  max-height: 200px;
+  object-fit: contain;
+  margin: 10px 0;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.gift-name {
+  font-weight: bold;
+  color: #333;
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.popup-content button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+  transition: background-color 0.3s;
+}
+
+.popup-content button:hover {
+  background-color: #45a049;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes popIn {
+  from { 
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to { 
+    transform: scale(1);
+    opacity: 1;
+  }
+} 
