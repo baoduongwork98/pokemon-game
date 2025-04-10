@@ -1,7 +1,8 @@
 .game-container {
   max-width: 100%;
+  width: 100vw;
+  height: 100vh;
   margin: 0 auto;
-  padding: 20px;
   text-align: center;
   background-color: #f0f8ff;
 }
@@ -45,9 +46,11 @@
 }
 
 .game-board {
+  width: 96%;
+  height: auto;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
+  gap:10px;
   justify-content: center;
 }
 
@@ -61,11 +64,11 @@
 }
 
 .game-over-message {
-  background-color: #f44336;
+  background-color: white;
 }
 
 .game-over-message .title-game-over {
-  color: white;
+  color: #333;
 }
 .popup-overlay {
   position: fixed;
@@ -73,6 +76,7 @@
   left: 0;
   right: 0;
   bottom: 0;
+  padding: 20px;
   background-color: rgba(0, 0, 0, 0.7);
   display: flex;
   justify-content: center;

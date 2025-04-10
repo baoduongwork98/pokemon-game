@@ -1,7 +1,7 @@
 #root {
-  max-width: 1280px;
+  background-color: #f0f8ff;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
 }
 
@@ -84,9 +84,15 @@
   font-size: 18px;
   color: #333;
 }
-
+.container{
+  display: flex;
+  align-items: center;
+justify-content: center;
+  height: 100vh;
+  width: 100vw;
+}
 .container h2 {
-  color: white;
+  color: #333;
   margin-bottom: 20px;
   font-size: 28px;
 }

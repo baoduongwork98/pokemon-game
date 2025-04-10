@@ -25,7 +25,7 @@ const GameBoard = () => {
     // Fetch 8 random Pokemon (we'll use 4 pairs)
     const fetchPokemons = async () => {
       const pokemonIds = Array.from(
-        { length: 4 },
+        { length: 8 },
         () => Math.floor(Math.random() * 151) + 1
       );
       const pokemonPromises = pokemonIds.map((id) =>
@@ -78,7 +78,6 @@ const GameBoard = () => {
     }
 
     const newFlippedCards = [...flippedCards, index];
-    console.log(newFlippedCards);
     setFlippedCards(newFlippedCards);
     setMoves((prev) => prev + 1);
 
@@ -96,7 +95,7 @@ const GameBoard = () => {
   };
 
   useEffect(() => {
-    if (matchedCards.length === 4) {
+    if (matchedCards.length === 8) {
       setGameWon(true);
       setTimerActive(false);
       // Randomly select a gift
@@ -110,6 +109,7 @@ const GameBoard = () => {
     // Logic to go back to the previous page
     navigate("/reward");
   };
+
   // const resetGame = () => {
   //   setFlippedCards([]);
   //   setMatchedCards([]);
@@ -173,10 +173,11 @@ const GameBoard = () => {
       {showPopup && (
         <div className="popup-overlay">
           <div className="popup-content">
-            <h2>Congratulations! 🎉</h2>
-            <p>You won the game!</p>
-            <p>Moves: {moves}</p>
-            <p>Time remaining: {formatTime(timeLeft)}</p>
+            <h2>Chúc mừng! 🎉</h2>
+            <p>Bạn đã chiến thắng!</p>
+            <p>Số lượt lật bài: {moves}</p>
+            <p>Thời gian: {formatTime(timeLeft)}</p>
+            <p>Đây là quà của bạn</p>
             {giftWon && (
               <div className="gift-won">
                 <h3>You won a gift!</h3>

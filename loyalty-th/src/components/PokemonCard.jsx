@@ -14,7 +14,7 @@ const PokemonCard = ({ pokemon, isFlipped, onClick, isMatched }) => {
             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
             alt={pokemon.name}
           />
-          <h3>{pokemon.name}</h3>
+          <h4>{pokemon.name}</h4>
         </div>
         <div className="card-back">
           <img src="gift.png" alt="Gift" />

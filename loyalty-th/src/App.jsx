@@ -8,7 +8,6 @@ import { useEffect } from "react";
 function Home() {
   const navigate = useNavigate();
   const [showPopup, setShowPopup] = React.useState(false);
-  const [showGame, setShowGame] = React.useState(false);
   const [showChoose, setShowChoose] = React.useState(false);
 
   const closePopup = () => {
@@ -17,25 +16,19 @@ function Home() {
   };
   const handleClick = () => {
     setShowPopup(true);
-    setShowGame(true);
   };
   const handlePlayGame = () => {
-    setShowChoose(true);
+    navigate("/game");
+    // setShowChoose(true);
     localStorage.setItem("showGame", "true");
   };
-
-  useEffect(() => {
-    const showGame = localStorage.getItem("showGame");
-    if (showGame === "true") {
-      setShowGame(true);
-    }
-  }, []);
 
   useEffect(() => {
     const tg = window.Telegram.WebApp;
     tg.ready();
     tg.expand();
   }, []);
+
   return (
     <div className="container">
       <div>
@@ -48,7 +41,7 @@ function Home() {
       {showPopup && (
         <div className="popup-overlay">
           <div className="popup-content">
-            <h2>Congratulations! 🎉</h2>
+            <h2>Chúc mừng! 🎉</h2>
             <p>Bạn đã tích được 100 điểm.</p>
             <p>Bạn có muốn được nhận thêm quà tặng?</p>
             <p>Cách thức thông qua tham gia trò chơi</p>
@@ -58,6 +51,7 @@ function Home() {
           </div>
         </div>
       )}
+
       {showChoose && (
         <div className="popup-overlay">
           <div className="popup-content">
