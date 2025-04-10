@@ -84,3 +84,9 @@
   font-size: 18px;
   color: #333;
 }
+
+.container h2 {
+  color: white;
+  margin-bottom: 20px;
+  font-size: 28px;
+}

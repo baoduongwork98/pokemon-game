@@ -3,6 +3,7 @@
   margin: 0 auto;
   padding: 20px;
   text-align: center;
+  background-color: #f0f8ff;
 }
 
 .game-header {
@@ -22,7 +23,7 @@
 }
 
 .game-stats p {
-  color: #FFFFFF;
+  color:#333;
   margin-bottom: 10px;
   font-size: 20px;
   font-weight: bold;
@@ -63,6 +64,9 @@
   background-color: #f44336;
 }
 
+.game-over-message .title-game-over {
+  color: white;
+}
 .popup-overlay {
   position: fixed;
   top: 0;

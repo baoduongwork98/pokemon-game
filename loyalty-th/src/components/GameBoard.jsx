@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import PokemonCard from "./PokemonCard";
 import "./GameBoard.css";
 const giftList = [
@@ -9,6 +10,7 @@ const giftList = [
 ];
 
 const GameBoard = () => {
+  const navigate = useNavigate();
   const [pokemons, setPokemons] = useState([]);
   const [flippedCards, setFlippedCards] = useState([]);
   const [matchedCards, setMatchedCards] = useState([]);
@@ -106,7 +108,7 @@ const GameBoard = () => {
 
   const goBack = () => {
     // Logic to go back to the previous page
-    window.history.back();
+    navigate("/reward");
   };
   // const resetGame = () => {
   //   setFlippedCards([]);
@@ -140,11 +142,17 @@ const GameBoard = () => {
       </div>
 
       {timeLeft === 0 && !gameWon && (
-        <div className="game-over-message">
-          <h2>Time's up!</h2>
-          <p>
-            You matched {matchedCards.length / 2} pairs in {moves} moves.
-          </p>
+        <div className="popup-overlay">
+          <div className="popup-content">
+            <div className="game-over-message">
+              <h2 className="title-game-over">Hết giờ!</h2>
+              <p>
+                Bạn đã ghép được {matchedCards.length / 2} cặp trong {moves}{" "}
+                lần.
+              </p>
+              <button onClick={goBack}>Trở lại</button>
+            </div>
+          </div>
         </div>
       )}
 
