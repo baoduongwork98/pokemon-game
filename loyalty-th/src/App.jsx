@@ -29,7 +29,13 @@ function Home() {
       setShowGame(true);
     }
   }, []);
+  useEffect(() => {
+    const tg = window.Telegram.WebApp;
+    tg.ready();
+    tg.expand();
 
+    console.log("User data:", tg.initDataUnsafe?.user);
+  }, []);
   return (
     <div className="container">
       {!showGame && (

@@ -108,19 +108,19 @@ const GameBoard = () => {
     // Logic to go back to the previous page
     window.history.back();
   };
-  const resetGame = () => {
-    setFlippedCards([]);
-    setMatchedCards([]);
-    setMoves(0);
-    setGameWon(false);
-    setTimeLeft(60);
-    setTimerActive(true);
-    setShowPopup(false);
-    setGiftWon(null);
-    // Re-shuffle the existing cards
-    const shuffledPokemons = [...pokemons].sort(() => Math.random() - 0.5);
-    setPokemons(shuffledPokemons);
-  };
+  // const resetGame = () => {
+  //   setFlippedCards([]);
+  //   setMatchedCards([]);
+  //   setMoves(0);
+  //   setGameWon(false);
+  //   setTimeLeft(60);
+  //   setTimerActive(true);
+  //   setShowPopup(false);
+  //   setGiftWon(null);
+  //   // Re-shuffle the existing cards
+  //   const shuffledPokemons = [...pokemons].sort(() => Math.random() - 0.5);
+  //   setPokemons(shuffledPokemons);
+  // };
 
   const formatTime = (seconds) => {
     const mins = Math.floor(seconds / 60);

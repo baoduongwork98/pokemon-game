@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "./PokemonCard.css";
 
 const PokemonCard = ({ pokemon, isFlipped, onClick, isMatched }) => {
