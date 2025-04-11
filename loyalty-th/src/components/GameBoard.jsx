@@ -99,8 +99,6 @@ const GameBoard = () => {
       setGameWon(true);
       setTimerActive(false);
       // Randomly select a gift
-      const randomGift = giftList[Math.floor(Math.random() * giftList.length)];
-      setGiftWon(randomGift);
       setShowPopup(true);
     }
   }, [matchedCards]);
@@ -177,18 +175,21 @@ const GameBoard = () => {
             <p>Bạn đã chiến thắng!</p>
             <p>Số lượt lật bài: {moves}</p>
             <p>Thời gian: {formatTime(timeLeft)}</p>
-            <p>Đây là quà của bạn</p>
-            {giftWon && (
-              <div className="gift-won">
-                <h3>You won a gift!</h3>
-                <img
-                  src={giftWon.img}
-                  alt={giftWon.name}
-                  className="gift-image"
-                />
-                <p className="gift-name">{giftWon.name}</p>
-              </div>
-            )}
+            <h1>Hãy lựa chọn quà</h1>
+            <div className="gift-list">
+              {giftList.map((gift) => (
+                <div
+                  key={gift.id}
+                  className={`gift-won ${
+                    giftWon?.id === gift.id ? "selected-gift" : ""
+                  }`}
+                  onClick={() => setGiftWon(gift)}
+                >
+                  <img src={gift.img} alt={gift.name} className="gift-image" />
+                  <p className="gift-name">{gift.name}</p>
+                </div>
+              ))}
+            </div>
             <button onClick={goBack}>Trở lại</button>
           </div>
         </div>

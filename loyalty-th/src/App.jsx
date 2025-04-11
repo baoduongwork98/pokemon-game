@@ -1,86 +1,96 @@
 import "./App.css";
 import React from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+
 import GameBoard from "./components/GameBoard";
 import GameClaw from "./components/GameClaw";
 import RewardPage from "./components/RewardPage";
-import { useEffect } from "react";
-function Home() {
+import LoadingPage from "./components/LoadingPage";
+import PermissionPopup from "./components/popup/PermissionPopup";
+import GoodByePage from "./components/GoodByePage";
+import ChildInputForm from "./components/ChildInputForm";
+import ChildGroupInput from "./components/ChildGroupInput";
+import InfoPage from "./components/InfoPage";
+function HomePage() {
   const navigate = useNavigate();
-  const [showPopup, setShowPopup] = React.useState(false);
-  const [showChoose, setShowChoose] = React.useState(false);
+  const [showAccessPermission, setShowAccessPermission] = React.useState(false);
 
-  const closePopup = () => {
-    setShowPopup(false);
-    navigate("/reward");
+  const handleAccept = () => {
+    localStorage.setItem("accessPermission", "true");
+    setShowAccessPermission(false);
+    navigate("/child-info");
   };
-  const handleClick = () => {
-    setShowPopup(true);
-  };
-  const handlePlayGame = () => {
-    navigate("/game");
-    // setShowChoose(true);
-    localStorage.setItem("showGame", "true");
+
+  const handleDecline = () => {
+    localStorage.removeItem("accessPermission");
+    setShowAccessPermission(false);
+
+    navigate("/goodbye");
+
+    const timer = setTimeout(() => {
+      window.Telegram.WebApp.close();
+    }, 1000);
+    clearTimeout(timer);
   };
 
   useEffect(() => {
     const tg = window.Telegram.WebApp;
     tg.ready();
     tg.expand();
+    const localAccessPermission = localStorage.getItem("accessPermission");
+    console.log("showPermission", showAccessPermission);
+    console.log("localAccessPermission", localAccessPermission);
+    if (!localAccessPermission) {
+      setShowAccessPermission(true);
+      return;
+    }
+    setShowAccessPermission(false);
+    navigate("/child-info");
   }, []);
 
   return (
     <div className="container">
-      <div>
-        <h2>Xác nhận đổi điểm</h2>
-        <button className="btn" onClick={handleClick}>
-          <span className="btn__text">Xác nhận</span>
-        </button>
-      </div>
-
-      {showPopup && (
-        <div className="popup-overlay">
-          <div className="popup-content">
-            <h2>Chúc mừng! 🎉</h2>
-            <p>Bạn đã tích được 100 điểm.</p>
-            <p>Bạn có muốn được nhận thêm quà tặng?</p>
-            <p>Cách thức thông qua tham gia trò chơi</p>
-            <button onClick={handlePlayGame}>Có</button>
-            {"   "}
-            <button onClick={closePopup}>Đóng</button>
-          </div>
-        </div>
-      )}
-
-      {showChoose && (
-        <div className="popup-overlay">
-          <div className="popup-content">
-            <div className="choose-game">
-              <h2>Chọn trò chơi</h2>
-              <button className="btn" onClick={() => navigate("/game")}>
-                Memory Pokemon
-              </button>
-              {"   "}
-              <button className="btn" onClick={() => navigate("/game-claw")}>
-                Game Claw
-              </button>
-            </div>
-          </div>
-        </div>
+      {showAccessPermission && (
+        <PermissionPopup
+          title="Yêu cầu quyền truy cập thông tin"
+          description="Ứng dụng cần quyền truy cập thông tin để gửi quà đến bạn chính xác."
+          onAccept={handleAccept}
+          onDecline={handleDecline}
+        />
       )}
     </div>
   );
 }
 
-function App() {
+const App = () => {
+  const [isLoading, setIsLoading] = React.useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/game" element={<GameBoard />} />
-      <Route path="/game-claw" element={<GameClaw />} />
-      <Route path="/reward" element={<RewardPage />} />
-    </Routes>
+    <>
+      {isLoading ? (
+        <LoadingPage />
+      ) : (
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/child-info" element={<ChildGroupInput />} />
+          <Route path="/info" element={<InfoPage />} />
+          <Route path="/game" element={<GameBoard />} />
+          <Route path="/game-claw" element={<GameClaw />} />
+          <Route path="/reward" element={<RewardPage />} />
+          <Route path="/goodbye" element={<GoodByePage />} />
+        </Routes>
+      )}
+    </>
   );
-}
+};
 
 export default App;

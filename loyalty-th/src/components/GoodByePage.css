@@ -1,0 +1,37 @@
+.goodbye-container {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(to bottom, #f0f9ff, #ffffff);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Nunito', sans-serif;
+  }
+  
+  .goodbye-box {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 20px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.05);
+  }
+  
+  .goodbye-title {
+    font-size: 2rem;
+    color: #2563eb;
+    margin-bottom: 1rem;
+  }
+  
+  .goodbye-message {
+    font-size: 1rem;
+    color: #374151;
+    margin-bottom: 1rem;
+  }
+  
+  .goodbye-small {
+    font-size: 0.85rem;
+    color: #6b7280;
+  }
+  
