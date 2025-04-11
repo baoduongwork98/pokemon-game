@@ -24,14 +24,12 @@ const GameBoard = () => {
   useEffect(() => {
     // Fetch 8 random Pokemon (we'll use 4 pairs)
     const fetchPokemons = async () => {
-      const uniqueIds = new Set();
-      while (uniqueIds.size < 8) {
+      const pokemonIds = [];
+      while (pokemonIds.length < 8) {
         const randomId = Math.floor(Math.random() * 898) + 1; // PokeAPI has 898 Pokemon
-        if (uniqueIds.has(randomId)) continue;
-        uniqueIds.add(randomId);
+        if (pokemonIds?.includes(randomId)) continue;
+        pokemonIds.push(randomId);
       }
-      const pokemonIds = Array.from(uniqueIds);
-      console.log(pokemonIds);
       const pokemonPromises = pokemonIds.map((id) =>
         fetch(`https://pokeapi.co/api/v2/pokemon/${id}`).then((response) =>
           response.json()
