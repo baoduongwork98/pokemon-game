@@ -80,7 +80,7 @@ const InfoPage = () => {
             <p>Cách thức thông qua tham gia trò chơi</p>
             <button onClick={handlePlayGame}>Có</button>
             {"   "}
-            <button onClick={closePopup}>Đóng</button>
+            <button onClick={closePopup}>Không</button>
           </div>
         </div>
       )}

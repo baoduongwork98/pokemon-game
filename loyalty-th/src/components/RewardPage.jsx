@@ -14,7 +14,8 @@ const RewardPage = () => {
 
   const handleClaim = () => {
     if (selectedStore) {
-      localStorage.setItem("accessPermission", "false");
+      localStorage.removeItem("accessPermission");
+      localStorage.removeItem("childGroup");
       setShowCode(true);
     } else {
       setShowCode(false);
