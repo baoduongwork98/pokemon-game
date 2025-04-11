@@ -27,6 +27,7 @@ const GameBoard = () => {
       const uniqueIds = new Set();
       while (uniqueIds.size < 8) {
         const randomId = Math.floor(Math.random() * 898) + 1; // PokeAPI has 898 Pokemon
+        if (uniqueIds.has(randomId)) continue;
         uniqueIds.add(randomId);
       }
       const pokemonIds = Array.from(uniqueIds);
@@ -110,6 +111,7 @@ const GameBoard = () => {
     // Logic to go back to the previous page
     navigate("/reward");
   };
+
   const formatTime = (seconds) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
