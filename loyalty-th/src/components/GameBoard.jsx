@@ -190,7 +190,7 @@ const GameBoard = () => {
                 </div>
               ))}
             </div>
-            <button onClick={goBack}>Trở lại</button>
+            <button onClick={goBack}>Nhận quà</button>
           </div>
         </div>
       )}

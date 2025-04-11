@@ -39,8 +39,6 @@ function HomePage() {
     tg.ready();
     tg.expand();
     const localAccessPermission = localStorage.getItem("accessPermission");
-    console.log("showPermission", showAccessPermission);
-    console.log("localAccessPermission", localAccessPermission);
     if (!localAccessPermission) {
       setShowAccessPermission(true);
       return;
