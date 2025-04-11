@@ -24,10 +24,13 @@ const GameBoard = () => {
   useEffect(() => {
     // Fetch 8 random Pokemon (we'll use 4 pairs)
     const fetchPokemons = async () => {
-      const pokemonIds = Array.from(
-        { length: 8 },
-        () => Math.floor(Math.random() * 151) + 1
-      );
+      const uniqueIds = new Set();
+      while (uniqueIds.size < 8) {
+        const randomId = Math.floor(Math.random() * 898) + 1; // PokeAPI has 898 Pokemon
+        uniqueIds.add(randomId);
+      }
+      const pokemonIds = Array.from(uniqueIds);
+      console.log(pokemonIds);
       const pokemonPromises = pokemonIds.map((id) =>
         fetch(`https://pokeapi.co/api/v2/pokemon/${id}`).then((response) =>
           response.json()
@@ -107,21 +110,6 @@ const GameBoard = () => {
     // Logic to go back to the previous page
     navigate("/reward");
   };
-
-  // const resetGame = () => {
-  //   setFlippedCards([]);
-  //   setMatchedCards([]);
-  //   setMoves(0);
-  //   setGameWon(false);
-  //   setTimeLeft(60);
-  //   setTimerActive(true);
-  //   setShowPopup(false);
-  //   setGiftWon(null);
-  //   // Re-shuffle the existing cards
-  //   const shuffledPokemons = [...pokemons].sort(() => Math.random() - 0.5);
-  //   setPokemons(shuffledPokemons);
-  // };
-
   const formatTime = (seconds) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
@@ -133,8 +121,8 @@ const GameBoard = () => {
       <div className="game-header">
         <h1>Pokemon Memory Game</h1>
         <div className="game-stats">
-          <p>Moves: {moves}</p>
-          <p>Time: {formatTime(timeLeft)}</p>
+          <p>Số lượt lật: {moves}</p>
+          <p>Thời gian còn lại: {formatTime(timeLeft)}</p>
           {/* <button onClick={resetGame}>New Game</button> */}
         </div>
       </div>
@@ -145,8 +133,7 @@ const GameBoard = () => {
             <div className="game-over-message">
               <h2 className="title-game-over">Hết giờ!</h2>
               <p>
-                Bạn đã ghép được {matchedCards.length / 2} cặp trong {moves}{" "}
-                lần.
+                Bạn đã ghép được {matchedCards.length} cặp trong {moves} lần.
               </p>
               <button onClick={goBack}>Trở lại</button>
             </div>

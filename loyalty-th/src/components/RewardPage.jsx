@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import "./RewardPage.css";
 
 const stores = [
-  "Cửa hàng Vincom Quang Trung",
-  "Cửa hàng AEON Mall Tân Phú",
-  "Cửa hàng Crescent Mall",
-  "Cửa hàng Mega Mall Thảo Điền",
+  "Chi nhánh Vincom Quang Trung",
+  "Chi nhánh AEON Mall Tân Phú",
+  "Chi nhánh Crescent Mall",
+  "Chi nhánh Mega Mall Thảo Điền",
 ];
 
 const RewardPage = () => {
@@ -27,23 +27,30 @@ const RewardPage = () => {
     <div className="gift-container">
       <div className="gift-box">
         <h2 className="gift-title">🎁 Nhận Quà </h2>
+        {!showCode && (
+          <div>
+            <p className="gift-text">
+              Hãy chọn cửa hàng mà bạn muốn nhận quà nhé!
+            </p>
 
-        <p className="gift-text">Hãy chọn cửa hàng mà bạn muốn nhận quà nhé!</p>
-
-        <select
-          value={selectedStore}
-          onChange={(e) => setSelectedStore(e.target.value)}
-          className="store-select"
-        >
-          <option value="">-- Chọn cửa hàng --</option>
-          {stores.map((store, idx) => (
-            <option key={idx} value={store}>
-              {store}
-            </option>
-          ))}
-        </select>
+            <select
+              value={selectedStore}
+              onChange={(e) => setSelectedStore(e.target.value)}
+              className="store-select"
+            >
+              <option value="">-- Chọn cửa hàng --</option>
+              {stores.map((store, idx) => (
+                <option key={idx} value={store}>
+                  {store}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
         {showCode && (
           <div className="code-text">
+            <h3>Cửa hàng</h3>
+            <p>{selectedStore}</p>
             <h3>Mã quà tặng của bạn:</h3>
             <p>ABC123XYZ</p>
             <p>
